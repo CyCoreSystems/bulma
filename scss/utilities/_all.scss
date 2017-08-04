@@ -1,6 +1,8 @@
 @charset "utf-8";
 
-@import "_functions.scss";
-@import "_variables.scss";
-@import "_mixins.scss";
-@import "_controls.scss";
+@import "initial-variables.sass";
+@import "functions.sass";
+@import "derived-variables.sass";
+@import "animations.sass";
+@import "mixins.sass";
+@import "controls.sass";

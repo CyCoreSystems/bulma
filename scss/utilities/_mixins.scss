@@ -25,21 +25,20 @@
   }
 }
 
-@mixin center($size) {
-  left: 50%;
-  margin-left: -($size / 2);
-  margin-top: -($size / 2);
+@mixin center($width, $height: 0) {
   position: absolute;
-  top: 50%;
+
+  @if $height != 0 {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$height} / 2));
+  }
+  @else {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$width} / 2));
+  }
 }
 
 @mixin delete {
-  // We need even pixel dimensions to ensure the delete cross can be perfectly centered
-  $dimension-small: roundToEvenNumber(1.5 * removeUnit($size-6) * removeUnit($size-small)) * 1px;
-  $dimension-normal: roundToEvenNumber(1.5 * removeUnit($size-6) * removeUnit($size-normal)) * 1px;
-  $dimension-medium: roundToEvenNumber(1.5 * removeUnit($size-6) * removeUnit($size-medium)) * 1px;
-  $dimension-large: roundToEvenNumber(1.5 * removeUnit($size-6) * removeUnit($size-large)) * 1px;
-
   @include unselectable;
 
   -moz-appearance: none;
@@ -49,14 +48,18 @@
   border-radius: 290486px;
   cursor: pointer;
   display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
   font-size: $size-normal;
-  height: $dimension-normal;
+  height: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
   outline: none;
   position: relative;
-  transform: rotate(45deg);
-  transform-origin: center center;
   vertical-align: top;
-  width: $dimension-normal;
+  width: 20px;
 
   &:before,
   &:after {
@@ -66,7 +69,8 @@
     left: 50%;
     position: absolute;
     top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    transform-origin: center center;
   }
 
   &:before {
@@ -90,18 +94,30 @@
 
   // Sizes
   &.is-small {
-    height: $dimension-small;
-    width: $dimension-small;
+    height: 16px;
+    max-height: 16px;
+    max-width: 16px;
+    min-height: 16px;
+    min-width: 16px;
+    width: 16px;
   }
 
   &.is-medium {
-    height: $dimension-medium;
-    width: $dimension-medium;
+    height: 24px;
+    max-height: 24px;
+    max-width: 24px;
+    min-height: 24px;
+    min-width: 24px;
+    width: 24px;
   }
 
   &.is-large {
-    height: $dimension-large;
-    width: $dimension-large;
+    height: 32px;
+    max-height: 32px;
+    max-width: 32px;
+    min-height: 32px;
+    min-width: 32px;
+    width: 32px;
   }
 }
 
@@ -175,16 +191,6 @@
   }
 }
 
-@keyframes spinAround {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(359deg);
-  }
-}
-
 @mixin loader {
   animation: spinAround 500ms infinite linear;
   border: 2px solid $border;
@@ -193,9 +199,9 @@
   border-top-color: transparent;
   content: "";
   display: block;
-  height: 1rem;
+  height: 1em;
   position: relative;
-  width: 1rem;
+  width: 1em;
 }
 
 @mixin overflow-touch {
@@ -230,16 +236,6 @@
 
 // Responsiveness
 
-$tablet: 769px !default;
-$desktop: 1000px !default;
-
-// 960px container + 40px
-$widescreen: 1192px !default;
-
-// 1152px container + 40
-// 960 and 1152 have been chosen because
-// they are divisible by both 12 and 16
-
 @mixin from($device) {
   @media screen and (min-width: $device) {
     @content;
@@ -259,7 +255,7 @@ $widescreen: 1192px !default;
 }
 
 @mixin tablet {
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: $tablet), print {
     @content;
   }
 }
@@ -290,6 +286,18 @@ $widescreen: 1192px !default;
 
 @mixin widescreen {
   @media screen and (min-width: $widescreen) {
+    @content;
+  }
+}
+
+@mixin widescreen-only {
+  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) {
+    @content;
+  }
+}
+
+@mixin fullhd {
+  @media screen and (min-width: $fullhd) {
     @content;
   }
 }

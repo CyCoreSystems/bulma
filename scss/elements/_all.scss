@@ -1,14 +1,15 @@
 @charset "utf-8";
 
-@import "_box.scss";
-@import "_button.scss";
-@import "_content.scss";
-@import "_form.scss";
-@import "_icon.scss";
-@import "_image.scss";
-@import "_notification.scss";
-@import "_progress.scss";
-@import "_table.scss";
-@import "_tag.scss";
-@import "_title.scss";
-@import "_other.scss";
+@import "box.sass";
+@import "button.sass";
+@import "content.sass";
+@import "form.sass";
+@import "icon.sass";
+@import "image.sass";
+@import "notification.sass";
+@import "progress.sass";
+@import "table.sass";
+@import "tag.sass";
+@import "title.sass";
+
+@import "other.sass";

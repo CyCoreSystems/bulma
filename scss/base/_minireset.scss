@@ -58,13 +58,12 @@ html {
 
 * {
   box-sizing: inherit;
-  	
-  &:before, 
-  &:after { 
-  	box-sizing: inherit; 
+
+  &:before,
+  &:after {
+    box-sizing: inherit;
   }
 }
-
 
 // Media
 img,
@@ -72,7 +71,6 @@ embed,
 object,
 audio,
 video {
-  height: auto;
   max-width: 100%;
 }
 

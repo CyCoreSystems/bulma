@@ -1,3 +1,6 @@
+$progress-bar-background-color: $border !default;
+$progress-value-background-color: $text !default;
+
 .progress {
   @include block;
 
@@ -12,15 +15,15 @@
   width: 100%;
 
   &::-webkit-progress-bar {
-    background-color: $border;
+    background-color: $progress-bar-background-color;
   }
 
   &::-webkit-progress-value {
-    background-color: $text;
+    background-color: $progress-value-background-color;
   }
 
   &::-moz-progress-bar {
-    background-color: $text;
+    background-color: $progress-value-background-color;
   }
 
   // Colors

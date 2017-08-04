@@ -3,22 +3,47 @@
 }
 
 .container {
+  margin: 0 auto;
   position: relative;
 
   @include desktop {
-    margin: 0 auto;
-    max-width: $desktop - 40px;
+    max-width: $desktop - 2 * $gap;
+    width: $desktop - 2 * $gap;
 
-    // Modifiers
     &.is-fluid {
-      margin: 0 20px;
+      margin-left: $gap;
+      margin-right: $gap;
       max-width: none;
+      width: auto;
+    }
+  }
+
+
+  @include until($widescreen) {
+    &.is-widescreen {
+      max-width: $widescreen - 2 * $gap;
+      width: auto;
+    }
+  }
+
+
+  @include until($fullhd) {
+    &.is-fullhd {
+      max-width: $fullhd - 2 * $gap;
+      width: auto;
     }
   }
 
 
   @include widescreen {
-    max-width: $widescreen - 40px;
+    max-width: $widescreen - 2 * $gap;
+    width: $widescreen - 2 * $gap;
+  }
+
+
+  @include fullhd {
+    max-width: $fullhd - 2 * $gap;
+    width: $fullhd - 2 * $gap;
   }
 }
 

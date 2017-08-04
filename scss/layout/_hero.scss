@@ -1,80 +1,7 @@
-// Components
-
-.hero-video {
-  @include overlay;
-
-  overflow: hidden;
-
-  video {
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-  }
-
-  // Modifiers
-  &.is-transparent {
-    opacity: 0.3;
-  }
-
-  // Responsiveness
-  @include mobile {
-    display: none;
-  }
-}
-
-.hero-buttons {
-  margin-top: 1.5rem;
-
-  // Responsiveness
-  @include mobile {
-    .button {
-      display: flex;
-
-      &:not(:last-child) {
-        margin-bottom: 0.75rem;
-      }
-    }
-  }
-
-
-  @include tablet {
-    display: flex;
-    justify-content: center;
-
-    .button:not(:last-child) {
-      margin-right: 1.5rem;
-    }
-  }
-}
-
-// Containers
-
-.hero-head,
-.hero-foot {
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.hero-body {
-  flex-grow: 1;
-  flex-shrink: 0;
-  padding: 3rem 1.5rem;
-
-  // Responsiveness
-  @include from($widescreen) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 // Main container
 
 .hero {
   align-items: stretch;
-  background-color: $white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -99,7 +26,7 @@
       background-color: $color;
       color: $color-invert;
 
-      a,
+      a:not(.button),
       strong {
         color: inherit;
       }
@@ -111,7 +38,7 @@
       .subtitle {
         color: rgba($color-invert, 0.9);
 
-        a,
+        a:not(.button),
         strong {
           color: $color-invert;
         }
@@ -180,6 +107,12 @@
         $gradient-bottom-right: lighten(saturate(adjust-hue($color, 10deg), 5%), 5%);
 
         background-image: linear-gradient(141deg, $gradient-top-left 0%, $color 71%, $gradient-bottom-right 100%);
+
+        @include mobile {
+          .nav-menu {
+            background-image: linear-gradient(141deg, $gradient-top-left 0%, $color 71%, $gradient-bottom-right 100%);
+          }
+        }
       }
 
       // Responsiveness
@@ -228,9 +161,8 @@
     }
   }
 
+  &.is-halfheight,
   &.is-fullheight {
-    min-height: 100vh;
-
     .hero-body {
       align-items: center;
       display: flex;
@@ -241,4 +173,78 @@
       }
     }
   }
+
+  &.is-halfheight {
+    min-height: 50vh;
+  }
+
+  &.is-fullheight {
+    min-height: 100vh;
+  }
+}
+
+// Components
+
+.hero-video {
+  @include overlay;
+
+  overflow: hidden;
+
+  video {
+    left: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  // Modifiers
+  &.is-transparent {
+    opacity: 0.3;
+  }
+
+  // Responsiveness
+  @include mobile {
+    display: none;
+  }
+}
+
+.hero-buttons {
+  margin-top: 1.5rem;
+
+  // Responsiveness
+  @include mobile {
+    .button {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+
+
+  @include tablet {
+    display: flex;
+    justify-content: center;
+
+    .button:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+// Containers
+
+.hero-head,
+.hero-foot {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.hero-body {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 3rem 1.5rem;
 }
