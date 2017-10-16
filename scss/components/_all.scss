@@ -1,12 +1,14 @@
 @charset "utf-8";
 
-@import "_card.scss";
-@import "_level.scss";
-@import "_media.scss";
-@import "_menu.scss";
-@import "_message.scss";
-@import "_modal.scss";
-@import "_nav.scss";
-@import "_pagination.scss";
-@import "_panel.scss";
-@import "_tabs.scss";
+@import "breadcrumb";
+@import "card";
+@import "dropdown";
+@import "level";
+@import "media";
+@import "menu";
+@import "message";
+@import "modal";
+@import "navbar";
+@import "pagination";
+@import "panel";
+@import "tabs";
